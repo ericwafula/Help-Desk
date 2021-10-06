@@ -3,14 +3,14 @@
     <group android:checkableBehavior="single">
 
         <item android:id="@+id/nav_home"
-            android:title="Profile"
-            android:icon="@drawable/ic_baseline_home_24"/>
-        <item android:id="@+id/nav_profile"
             android:title="Home"
-            android:icon="@drawable/user_icon"/>
+            android:icon="@drawable/home"/>
+        <item android:id="@+id/nav_profile"
+            android:title="Profile"
+            android:icon="@drawable/user"/>
         <item android:id="@+id/nav_post_question"
             android:title="Post Question"
-            android:icon="@drawable/edit_icon"/>
+            android:icon="@drawable/edit"/>
         <item android:id="@+id/nav_faq"
             android:title="FAQ"
             android:icon="@drawable/faq_icon"/>
