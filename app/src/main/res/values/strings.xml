@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Help Desk</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="get_quick_responses">Get Quick Responses</string>
+    <string name="simple_and_fast">Simple and Fast</string>
+    <string name="help_desk">Help Desk</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="get_started">Get Started</string>
+    <string name="signup">Signup</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="have_an_account">Already have an account?</string>
+    <string name="login">Login</string>
+    <string name="no_account">Don’t have an account?</string>
+</resources>

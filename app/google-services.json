@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "385166988873",
+    "project_id": "help-desk-119b3",
+    "storage_bucket": "help-desk-119b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385166988873:android:2dad53a0dd24881d2e9198",
+        "android_client_info": {
+          "package_name": "com.moringaschool.helpdesk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385166988873-l36hlki0ca3tdaitvuarssdc4f7efb83.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.moringaschool.helpdesk",
+            "certificate_hash": "c4997b00d7e134f827bce65811cd1d485b9443fc"
+          }
+        },
+        {
+          "client_id": "385166988873-gbh8treq21rf3bug5a8ob99urq3dqv3s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxzCeTk8nWpsXlyNdR98VJ8LrIQay5_Yk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385166988873-gbh8treq21rf3bug5a8ob99urq3dqv3s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
