@@ -18,13 +18,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.models.Constants;
 
+import java.util.Objects;
+
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = SignupActivity.class.getSimpleName();
+
+    private String mUsername;
 
     private FirebaseAuth mAuth;
     DatabaseReference mUserReference;
@@ -89,9 +94,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         final String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
         String confirmPassword = mConfirmPassword.getText().toString().trim();
+        mUsername = mName.getText().toString().trim();
 
         boolean validEmail = isValidEmail(email);
         boolean validName = isValidName(name);
+        boolean validmName = isValidName(mUsername);
         boolean validPassword = isValidPassword(password, confirmPassword);
         if (!validEmail || !validName || !validPassword) return;
 
@@ -106,11 +113,32 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
                 if (task.isSuccessful()){
                     Toast.makeText(SignupActivity.this, "Authentication successful", Toast.LENGTH_LONG).show();
+                    createFirebaseUserProfile(Objects.requireNonNull(Objects.requireNonNull(task.getResult()).getUser()));
                 } else {
                     Toast.makeText(SignupActivity.this, "Authentication failed", Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    private void createFirebaseUserProfile(final FirebaseUser user) {
+
+        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest.Builder()
+                .setDisplayName(mUsername)
+                .build();
+
+        user.updateProfile(addProfileName)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, Objects.requireNonNull(user.getDisplayName()));
+                            Toast.makeText(SignupActivity.this, "The display name has ben set", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                });
     }
 
     private void createAuthStateListener(){
