@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="240dp"
+    android:layout_height="140dp"
+    android:paddingTop="100dp"
     android:layout_gravity="top">
 
     <TextView
@@ -29,5 +30,5 @@
         app:layout_constraintEnd_toStartOf="@+id/user_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_avatar" />
+        app:srcCompat="@drawable/user_placeholder" />
 </androidx.constraintlayout.widget.ConstraintLayout>
