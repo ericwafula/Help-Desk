@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk;
+package com.moringaschool.helpdesk.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.moringaschool.helpdesk.R;
 
 public class LauncherActivity extends AppCompatActivity implements View.OnClickListener{
     Button mButton;
