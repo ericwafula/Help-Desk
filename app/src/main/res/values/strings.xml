@@ -21,4 +21,23 @@
     <string name="posted_question">Posted Question</string>
     <string name="faq">FAQ</string>
     <string name="logout">Logout</string>
+    <string name="recent_posts">Recent Posts</string>
+    <string name="flask">Flask</string>
+    <string name="django">Django</string>
+    <string name="spark">Spark</string>
+    <string name="android">Android</string>
+    <string name="python">Python</string>
+    <string name="java">Java</string>
+    <string name="javascript">Javascript</string>
+    <string name="html">HTML</string>
+    <string name="css">CSS</string>
+    <string name="am_having_trouble_integrating_heroku">Am having trouble integrating Heroku...</string>
+    <string name="am_having_trouble_integrating_heroku_with_python_flask">Am having trouble integrating Heroku with Python Flask</string>
+    <string name="read_more">Read More...</string>
+    <string name="post">post</string>
+    <string name="search">Search</string>
+    <string name="post_a_question">Post a Question</string>
+    <string name="title">Title</string>
+    <string name="enter_question_s_title">Enter question\'s title</string>
+    <string name="submit">Submit</string>
 </resources>

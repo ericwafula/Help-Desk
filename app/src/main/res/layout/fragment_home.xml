@@ -1,14 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:id="@+id/recent_posts_title"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/colorOnPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
+        android:text="@string/recent_posts"
         android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/post"
+        android:layout_toEndOf="@id/recent_posts_title"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="114dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/colorOnPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:drawablePadding="6dp"
+        app:drawableStartCompat="@drawable/edit" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recent_posts_title"
+        android:layout_marginTop="18dp">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/flask"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/flask" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/django"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/django" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/spark"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/spark" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/java"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/java" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/python"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/python" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/javascript"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/javascript" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/html"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/html" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/css"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:height="35dp"
+            android:text="@string/css" />
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recent_posts_recyclerview"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/chip_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
 </RelativeLayout>
