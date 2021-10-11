@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,11 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // <------------ Toolbar ------------>
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         // ini
         mAuth = FirebaseAuth.getInstance();
@@ -60,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(R.id.nav_home);
 
         updateNavHeader();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
     @Override
@@ -75,12 +82,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment selectedFragment = null;
+
         switch(item.getItemId()){
             case R.id.nav_home:
+                selectedFragment = new HomeFragment();
+                break;
+            case R.id.nav_profile:
+                selectedFragment = new ProfileFragment();
+                break;
+            case R.id.nav_posted_question:
+                selectedFragment = new PostedQuestionFragment();
+                break;
+            case R.id.nav_faq:
+                selectedFragment = new FaqFragment();
                 break;
             case R.id.nav_logout:
+                Toast.makeText(MainActivity.this, "Logging you out", Toast.LENGTH_SHORT).show();
+                selectedFragment = new HomeFragment();
                 logout();
         }
+
+        assert selectedFragment != null;
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

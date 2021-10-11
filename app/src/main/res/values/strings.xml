@@ -16,4 +16,9 @@
     <string name="have_an_account">Already have an account?</string>
     <string name="login">Login</string>
     <string name="no_account">Don’t have an account?</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="posted_question">Posted Question</string>
+    <string name="faq">FAQ</string>
+    <string name="logout">Logout</string>
 </resources>

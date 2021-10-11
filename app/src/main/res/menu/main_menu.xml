@@ -3,16 +3,16 @@
     <group android:checkableBehavior="single">
 
         <item android:id="@+id/nav_home"
-            android:title="Home"
+            android:title="@string/home"
             android:icon="@drawable/home"/>
         <item android:id="@+id/nav_profile"
-            android:title="Profile"
+            android:title="@string/profile"
             android:icon="@drawable/user"/>
-        <item android:id="@+id/nav_post_question"
-            android:title="Post Question"
+        <item android:id="@+id/nav_posted_question"
+            android:title="@string/posted_question"
             android:icon="@drawable/edit"/>
         <item android:id="@+id/nav_faq"
-            android:title="FAQ"
+            android:title="@string/faq"
             android:icon="@drawable/faq_icon"/>
 
     </group>
@@ -20,7 +20,7 @@
     <group android:checkableBehavior="single">
 
         <item android:id="@+id/nav_logout"
-            android:title="Logout"
+            android:title="@string/logout"
             android:icon="@drawable/logout_icon"/>
     </group>
 </menu>

@@ -9,8 +9,13 @@
     tools:openDrawer="start"
     tools:context=".ui.MainActivity">
 
-    <include android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:minHeight="?actionBarSize"
+        android:theme="?android:attr/actionBarTheme"
+        app:navigationIcon="@drawable/menu"
+        android:layout_height="wrap_content"/>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -20,10 +25,10 @@
         app:menu="@menu/main_menu"
         android:layout_gravity="start"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Hello World!" />
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
