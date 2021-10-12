@@ -20,27 +20,27 @@
 
         <TextView
             android:id="@+id/card_title"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp"
-            android:textColor="@color/primaryVariant"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/am_having_trouble_integrating_heroku" />
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="18dp"
+            android:text="@string/am_having_trouble_integrating_heroku"
+            android:textColor="@color/primaryVariant"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/card_body"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="18dp"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_title"
-            android:text="@string/am_having_trouble_integrating_heroku_with_python_flask" />
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="18dp"
+            android:text="@string/am_having_trouble_integrating_heroku_with_python_flask"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/card_read_more"

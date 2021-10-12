@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable/button_radius.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/input_radius.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/question_input_radius.xml" value="0.371875" />
+        <entry key="app/src/main/res/drawable/thumb_down_icon.xml" value="0.371875" />
         <entry key="app/src/main/res/drawable/user_circular.xml" value="0.371875" />
         <entry key="app/src/main/res/layout-v28/activity_launcher.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/activity_launcher.xml" value="0.35572916666666665" />
@@ -18,9 +19,10 @@
         <entry key="app/src/main/res/layout/fragment_faq.xml" value="0.2767210144927536" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_posted_question.xml" value="0.2767210144927536" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2767210144927536" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/header.xml" value="0.2821557971014493" />
         <entry key="app/src/main/res/layout/recent_posts_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/responses_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.2875905797101449" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/menu/menu_search.xml" value="0.35572916666666665" />

@@ -40,4 +40,12 @@
     <string name="title">Title</string>
     <string name="enter_question_s_title">Enter question\'s title</string>
     <string name="submit">Submit</string>
+    <string name="eric_wathome">Eric Wathome</string>
+    <string name="my_posts">My Posts</string>
+    <string name="am_having_trouble_integrating_heroku_long">Am having trouble integrating Heroku with Python Flask. Am getting an Error while at it.</string>
+    <string name="reply">Reply</string>
+    <string name="responses">Responses</string>
+    <string name="response_right_dependencies1">Make sure you have the right dependencies</string>
+    <string name="_25">25</string>
+    <string name="_12">12</string>
 </resources>
