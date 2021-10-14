@@ -26,4 +26,13 @@
         <item name="fullscreenTextColor">#4FB0E3</item>
         <item name="android:statusBarColor">#00000000</item>
     </style>
+
+    <style name="Theme.HelpDesk.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.HelpDesk.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.HelpDesk.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
