@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class PostedQuestionFragment extends Fragment implements PostQuestionDial
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView post = view.findViewById(R.id.post);
+        ImageView post = view.findViewById(R.id.post);
 
         ArrayList<String> mResponses = new ArrayList<>();
         ArrayList<String> mUpVotes = new ArrayList<>();

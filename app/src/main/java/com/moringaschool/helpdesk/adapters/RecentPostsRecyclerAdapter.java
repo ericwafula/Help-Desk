@@ -1,15 +1,19 @@
 package com.moringaschool.helpdesk.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.helpdesk.R;
+import com.moringaschool.helpdesk.ui.PostedQuestionFragment;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
@@ -39,6 +43,16 @@ public class RecentPostsRecyclerAdapter extends RecyclerView.Adapter<RecentPosts
         holder.cardTitle.setText(cardTitles.get(position));
         holder.cardBody.setText(cardBodies.get(position));
         holder.cardReadMore.setText(cardReadMores.get(position));
+        View rootView = null;
+        
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                PostedQuestionFragment postedQuestionFragment = new PostedQuestionFragment();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, postedQuestionFragment).addToBackStack(null).commit();
+            }
+        });
     }
 
     @Override
@@ -50,11 +64,13 @@ public class RecentPostsRecyclerAdapter extends RecyclerView.Adapter<RecentPosts
         TextView cardTitle;
         TextView cardBody;
         TextView cardReadMore;
+        RelativeLayout relativeLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardTitle = itemView.findViewById(R.id.card_title);
             cardBody = itemView.findViewById(R.id.card_body);
             cardReadMore = itemView.findViewById(R.id.card_read_more);
+            relativeLayout = itemView.findViewById(R.id.relativeLayout);
         }
     }
 }
