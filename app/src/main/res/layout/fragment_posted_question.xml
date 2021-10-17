@@ -38,19 +38,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/title"
-        android:layout_below="@+id/constraint"
+        android:id="@+id/p_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:layout_below="@+id/constraint"
+        android:layout_marginStart="24dp"
         android:text="@string/am_having_trouble_integrating_heroku"
         android:textColor="@color/colorOnPrimary"
         android:textSize="18sp"
-        android:layout_marginStart="24dp"/>
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:id="@+id/body_container"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/p_title"
         android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
         android:padding="24dp">
 
         <TextView
-            android:id="@+id/body"
+            android:id="@+id/p_body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/am_having_trouble_integrating_heroku_long"

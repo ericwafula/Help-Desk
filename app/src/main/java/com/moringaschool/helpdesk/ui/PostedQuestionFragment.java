@@ -36,8 +36,17 @@ public class PostedQuestionFragment extends Fragment implements PostQuestionDial
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        String title = bundle.getString("pTitle");
+        String body = bundle.getString("pBody");
         ImageView post = view.findViewById(R.id.post);
+
+        TextView textViewTitle = view.findViewById(R.id.p_title);
+        TextView textViewBody = view.findViewById(R.id.p_body);
+
+        textViewTitle.setText(title);
+        textViewBody.setText(body);
 
         ArrayList<String> mResponses = new ArrayList<>();
         ArrayList<String> mUpVotes = new ArrayList<>();

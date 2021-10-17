@@ -2,6 +2,7 @@ package com.moringaschool.helpdesk.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ public class RecentPostsRecyclerAdapter extends RecyclerView.Adapter<RecentPosts
     ArrayList<String> cardBodies = new ArrayList<>();
     ArrayList<String> cardReadMores = new ArrayList<>();
 
+
     public RecentPostsRecyclerAdapter(Context mContext, ArrayList<String> cardTitles, ArrayList<String> cardBodies, ArrayList<String> cardReadMores) {
         this.mContext = mContext;
         this.cardTitles = cardTitles;
@@ -43,6 +45,9 @@ public class RecentPostsRecyclerAdapter extends RecyclerView.Adapter<RecentPosts
         holder.cardTitle.setText(cardTitles.get(position));
         holder.cardBody.setText(cardBodies.get(position));
         holder.cardReadMore.setText(cardReadMores.get(position));
+        Bundle bundle = new Bundle();
+        bundle.putString("pTitle", holder.cardTitle.getText().toString());
+        bundle.putString("pBody", holder.cardBody.getText().toString());
         View rootView = null;
         
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +55,7 @@ public class RecentPostsRecyclerAdapter extends RecyclerView.Adapter<RecentPosts
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 PostedQuestionFragment postedQuestionFragment = new PostedQuestionFragment();
+                postedQuestionFragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, postedQuestionFragment).addToBackStack(null).commit();
             }
         });
