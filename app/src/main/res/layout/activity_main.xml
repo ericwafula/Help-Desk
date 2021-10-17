@@ -9,13 +9,7 @@
     tools:openDrawer="start"
     tools:context=".ui.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:minHeight="?actionBarSize"
-        android:theme="?android:attr/actionBarTheme"
-        app:navigationIcon="@drawable/menu"
-        android:layout_height="wrap_content"/>
+    <include layout="@layout/toolbar"/>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
