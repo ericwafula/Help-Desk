@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.models.Login;
 import com.moringaschool.helpdesk.models.User;
-import com.moringaschool.helpdesk.network.Constants;
+import com.moringaschool.helpdesk.constants.Constants;
 import com.moringaschool.helpdesk.network.LoginApi;
 import com.moringaschool.helpdesk.network.LoginClient;
 

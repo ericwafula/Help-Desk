@@ -35,7 +35,6 @@
     <string name="am_having_trouble_integrating_heroku_with_python_flask">Am having trouble integrating Heroku with Python Flask</string>
     <string name="read_more">Read More...</string>
     <string name="post">post</string>
-    <string name="search">Search</string>
     <string name="post_a_question">Post a Question</string>
     <string name="title">Title</string>
     <string name="enter_question_s_title">Enter question\'s title</string>
@@ -57,4 +56,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="read_more_java">Read More...</string>
+    <string name="search">Search</string>
 </resources>
