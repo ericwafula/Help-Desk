@@ -1,10 +1,13 @@
 
 package com.moringaschool.helpdesk.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+public class Result implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -55,6 +58,32 @@ public class Result {
         this.language = language;
         this.screenshot = screenshot;
     }
+
+    protected Result(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        date = in.readString();
+        category = in.readString();
+        title = in.readString();
+        body = in.readString();
+        language = in.readString();
+        screenshot = in.readString();
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     public Integer getId() {
         return id;
@@ -137,4 +166,24 @@ public class Result {
         return ((((((((this.date == rhs.date)||((this.date!= null)&&this.date.equals(rhs.date)))&&((this.language == rhs.language)||((this.language!= null)&&this.language.equals(rhs.language))))&&((this.id == rhs.id)||((this.id!= null)&&this.id.equals(rhs.id))))&&((this.screenshot == rhs.screenshot)||((this.screenshot!= null)&&this.screenshot.equals(rhs.screenshot))))&&((this.category == rhs.category)||((this.category!= null)&&this.category.equals(rhs.category))))&&((this.title == rhs.title)||((this.title!= null)&&this.title.equals(rhs.title))))&&((this.body == rhs.body)||((this.body!= null)&&this.body.equals(rhs.body))));
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (id == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(id);
+        }
+        parcel.writeString(date);
+        parcel.writeString(category);
+        parcel.writeString(title);
+        parcel.writeString(body);
+        parcel.writeString(language);
+        parcel.writeString(screenshot);
+    }
 }
