@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

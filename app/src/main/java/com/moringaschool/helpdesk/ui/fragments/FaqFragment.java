@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

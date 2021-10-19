@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.helpdesk.R;
-import com.moringaschool.helpdesk.adapters.RecentPostsRecyclerAdapter;
 import com.moringaschool.helpdesk.adapters.ResponsesRecyclerAdapter;
 
 import java.util.ArrayList;

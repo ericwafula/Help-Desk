@@ -1,7 +1,6 @@
 package com.moringaschool.helpdesk.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.helpdesk.R;
-import com.moringaschool.helpdesk.ui.PostedQuestionFragment;
+import com.moringaschool.helpdesk.ui.fragments.PostedQuestionFragment;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class RecentPostsRecyclerAdapter extends RecyclerView.Adapter<RecentPostsRecyclerAdapter.ViewHolder> {
     Context mContext;

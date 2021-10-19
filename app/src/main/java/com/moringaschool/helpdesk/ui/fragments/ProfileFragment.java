@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.adapters.RecentPostsRecyclerAdapter;
+import com.moringaschool.helpdesk.ui.LoginActivity;
 
 import java.util.ArrayList;
 

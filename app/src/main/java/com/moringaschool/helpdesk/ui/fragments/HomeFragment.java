@@ -1,38 +1,34 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.adapters.AltRecentPostsRecyclerAdapter;
-import com.moringaschool.helpdesk.adapters.RecentPostsRecyclerAdapter;
 import com.moringaschool.helpdesk.models.Questions;
 import com.moringaschool.helpdesk.models.Result;
-import com.moringaschool.helpdesk.network.GeneralQuestionsApi;
-import com.moringaschool.helpdesk.network.GeneralQuestionsClient;
+import com.moringaschool.helpdesk.viewmodel.QuestionsListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class HomeFragment extends Fragment implements PostQuestionDialog.PostQuestionDialogListener{
-    View rootView;
+    private View rootView;
+    private List<Result> resultsList;
+    private AltRecentPostsRecyclerAdapter recentPostsRecyclerAdapter;
+    QuestionsListViewModel questionsListViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +39,6 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        getResponses();
         return rootView;
     }
 
@@ -52,7 +47,12 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
         super.onViewCreated(view, savedInstanceState);
         final String tag = getTag();
 
+
+
         ImageView post = view.findViewById(R.id.post);
+
+        Bundle bundle = getArguments();
+//        List<Result> results = bundle.getParcelableArrayList("results");
 
         ArrayList<String> cardTitle = new ArrayList<>();
         ArrayList<String> cardBody = new ArrayList<>();
@@ -71,11 +71,24 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
         readMore.add("Read More...");
 
 
+        questionsListViewModel = new ViewModelProvider(this).get(QuestionsListViewModel.class);
+        questionsListViewModel.makeApiCall();
+        questionsListViewModel.getQuestionsListObserver().observe(getViewLifecycleOwner(), new Observer<List<Result>>() {
+            @Override
+            public void onChanged(List<Result> results) {
+                resultsList = results;
+                recentPostsRecyclerAdapter = new AltRecentPostsRecyclerAdapter(getActivity(), resultsList);
+                RecyclerView recyclerView = rootView.findViewById(R.id.recent_posts_recyclerview);
+                recyclerView.setAdapter(recentPostsRecyclerAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+        });
+
+
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDialog();
-                getResponses();
             }
         });
     }
@@ -90,32 +103,5 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
     @Override
     public void applyQuestion(String title, String body) {
         Toast.makeText(getActivity(), "Toast Works: " + title + ", " + body, Toast.LENGTH_SHORT).show();
-    }
-
-    public void getResponses(){
-        GeneralQuestionsApi generalQuestionsApi = GeneralQuestionsClient.generalQuestions();
-        Call<Questions> call = generalQuestionsApi.getGeneralQuestions();
-
-        call.enqueue(new Callback<Questions>() {
-            @Override
-            public void onResponse(@NonNull Call<Questions> call, @NonNull Response<Questions> response) {
-                if (response.isSuccessful()) {
-                    assert response.body() != null;
-                    List<Result> results = response.body().getResults();
-
-                    AltRecentPostsRecyclerAdapter recentPostsRecyclerAdapter = new AltRecentPostsRecyclerAdapter(getActivity(), results);
-                    RecyclerView recyclerView = rootView.findViewById(R.id.recent_posts_recyclerview);
-                    recyclerView.setAdapter(recentPostsRecyclerAdapter);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                } else {
-                    Toast.makeText(getActivity(), "Response unsuccessful: " + response.errorBody(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Questions> call, @NonNull Throwable t) {
-                Toast.makeText(getActivity(), "onFailure: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }
