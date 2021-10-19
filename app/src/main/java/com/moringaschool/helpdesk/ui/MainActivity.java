@@ -1,39 +1,54 @@
 package com.moringaschool.helpdesk.ui;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
+import com.moringaschool.helpdesk.constants.Constants;
+import com.moringaschool.helpdesk.models.Questions;
+import com.moringaschool.helpdesk.models.Result;
+import com.moringaschool.helpdesk.network.GeneralQuestionsApi;
+import com.moringaschool.helpdesk.network.GeneralQuestionsClient;
+import com.moringaschool.helpdesk.ui.fragments.HomeFragment;
+import com.moringaschool.helpdesk.ui.fragments.PostQuestionDialog;
+import com.moringaschool.helpdesk.ui.fragments.PostedQuestionFragment;
+import com.moringaschool.helpdesk.ui.fragments.ProfileFragment;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private final String TAG = MainActivity.class.getSimpleName();
+
+    private SharedPreferences mSharedPreferences;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     FirebaseUser currentUser;
+    List<Result> results;
 
-    TextView nav_name;
-
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
+    BottomNavigationView bottomNav;
     Toolbar toolbar;
 
     @Override
@@ -41,43 +56,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // <------------ Hooks ------------>
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Constants.authToken = mSharedPreferences.getString(Constants.AUTH_TOKEN_PREFERENCE, null);
 
-        // <------------ Toolbar ------------>
-        setSupportActionBar(toolbar);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+        bottomNav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
 
         // ini
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        // <------------ Navigation Drawer Menu ------------>
-        navigationView.bringToFront();
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(this);
-
-        navigationView.setCheckedItem(R.id.nav_home);
-
-        updateNavHeader();
+        bottomNav.setOnNavigationItemSelectedListener(this);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_widget, menu);
+        MenuItem item = menu.findItem(R.id.app_bar_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String s) {
 
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -93,20 +104,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_posted_question:
                 selectedFragment = new PostedQuestionFragment();
+                openDialog();
                 break;
-            case R.id.nav_faq:
-                selectedFragment = new FaqFragment();
-                break;
-            case R.id.nav_logout:
-                Toast.makeText(MainActivity.this, "Logging you out", Toast.LENGTH_SHORT).show();
-                selectedFragment = new HomeFragment();
-                logout();
+//            case R.id.nav_faq:
+//                selectedFragment = new FaqFragment();
+//                break;
+//            case R.id.nav_logout:
+//                Toast.makeText(MainActivity.this, "Logging you out", Toast.LENGTH_SHORT).show();
+//                selectedFragment = new HomeFragment();
+//                logout();
         }
 
         assert selectedFragment != null;
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
 
-        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -119,12 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         finish();
     }
 
-    // sets the user's display name
-    public void updateNavHeader(){
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View headerView = navigationView.getHeaderView(0);
 
-        TextView navUsername = headerView.findViewById(R.id.user_name);
-        navUsername.setText(currentUser.getDisplayName());
+    public void openDialog(){
+        PostQuestionDialog postQuestionDialog = new PostQuestionDialog();
+        postQuestionDialog.show(getSupportFragmentManager(), "question dialog");
     }
+
 }

@@ -24,7 +24,10 @@ public class LauncherActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if (view == mButton){
-            startActivity(new Intent(LauncherActivity.this, SignupActivity.class));
+            Intent intent =  new Intent(LauncherActivity.this, SignupActivity.class);
+            startActivity(intent);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            finish();
         }
     }
 }

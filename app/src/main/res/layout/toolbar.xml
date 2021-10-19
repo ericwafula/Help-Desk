@@ -10,7 +10,8 @@
         android:background="@color/white"
         android:elevation="4dp"
         android:id="@+id/toolbar"
-
-        app:navigationIcon="@drawable/ic_custom_menu"/>
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:menu="@menu/search_widget"/>
 
 </RelativeLayout>

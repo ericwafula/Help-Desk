@@ -9,7 +9,7 @@
         android:id="@+id/profile_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="12dp">
 
         <TextView
             android:id="@+id/profile_title"
@@ -32,12 +32,10 @@
             android:drawablePadding="6dp"
             android:textColor="@color/colorOnPrimary"
             android:textSize="24sp"
-            app:drawableStartCompat="@drawable/edit"
+            app:drawableEndCompat="@drawable/help_circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,26 +45,26 @@
         android:layout_below="@+id/profile_header"
         android:layout_marginTop="36dp">
 
-
-        <ImageView
-            android:id="@+id/user_placeholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/user_placeholder" />
-
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="25dp"
             android:text="@string/eric_wathome"
-            android:textSize="30sp"
+            android:textColor="#B0ABBD"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ic_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="27dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_log_out" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -77,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
         android:text="@string/my_posts"
         android:textSize="24sp"
@@ -88,5 +86,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/my_posts_title"
-        android:layout_marginTop="36dp" />
+        android:layout_marginTop="24dp" />
 </RelativeLayout>

@@ -20,9 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.moringaschool.helpdesk.R;
-import com.moringaschool.helpdesk.models.Constants;
 
 import java.util.Objects;
 

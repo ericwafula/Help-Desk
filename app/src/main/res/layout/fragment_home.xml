@@ -1,123 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/recent_posts_title"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="60dp"
-        android:textColor="@color/colorOnPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/recent_posts"
-        android:textSize="24sp"/>
-
-    <TextView
-        android:id="@+id/post"
-        android:layout_toEndOf="@id/recent_posts_title"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="114dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="60dp"
-        android:textColor="@color/colorOnPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:drawablePadding="6dp"
-        app:drawableStartCompat="@drawable/edit" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recent_posts_title"
-        android:layout_marginTop="18dp">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/flask"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/flask" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/django"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/django" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/spark"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/spark" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/java"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/java" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/python"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/python" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/javascript"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/javascript" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/html"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/html" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/css"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:height="35dp"
-            android:text="@string/css" />
-
-
-    </com.google.android.material.chip.ChipGroup>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recent_posts_recyclerview"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/chip_group"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="wrap_content">
 
 
-</RelativeLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recent_posts_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/recent_posts_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/recent_posts"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_post"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recent_posts_title"
+            android:layout_marginTop="18dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/flask"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/flask" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/django"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/django" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/spark"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/spark" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/java"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/java" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/python"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/python" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/javascript"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/javascript" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/html"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/html" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/css"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:height="35dp"
+                android:text="@string/css" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recent_posts_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/chip_group"
+            android:layout_marginTop="24dp" />
+    </RelativeLayout>
+
+</ScrollView>
