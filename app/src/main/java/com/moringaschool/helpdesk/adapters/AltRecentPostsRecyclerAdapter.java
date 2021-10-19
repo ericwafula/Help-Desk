@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,16 +16,19 @@ import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.models.Result;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.zip.Inflater;
 
-public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecentPostsRecyclerAdapter.ViewHolder> {
+public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecentPostsRecyclerAdapter.ViewHolder> implements Filterable {
     private Context mContext;
     private List<Result> mResults;
+    private List <Result> mResultsAll;
 
     public AltRecentPostsRecyclerAdapter(Context mContext, List<Result> mResults) {
         this.mContext = mContext;
         this.mResults = mResults;
+        this.mResultsAll = new ArrayList<>(mResults);
     }
 
     @NonNull
@@ -42,6 +47,40 @@ public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecen
     public int getItemCount() {
         return mResults.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        // background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Result> filteredList =  new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()){
+                filteredList.addAll(mResultsAll);
+            } else {
+                for (Result result:mResultsAll){
+                    if (result.getTitle().toLowerCase().contains(charSequence.toString()) || result.getBody().toLowerCase().contains(charSequence.toString())){
+                        filteredList.add(result);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+            return filterResults;
+        }
+        // UI thread
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            mResults.clear();
+            mResults.addAll((Collection<? extends Result>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView cardTitle;

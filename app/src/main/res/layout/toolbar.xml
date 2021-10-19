@@ -10,6 +10,8 @@
         android:background="@color/white"
         android:elevation="4dp"
         android:id="@+id/toolbar"
-        app:menu="@menu/search_widget" />
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        app:menu="@menu/search_widget"/>
 
 </RelativeLayout>

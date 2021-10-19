@@ -32,17 +32,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment implements PostQuestionDialog.PostQuestionDialogListener{
+    View rootView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        getResponses();
+        return rootView;
     }
 
     @Override
@@ -55,8 +57,6 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
         ArrayList<String> cardTitle = new ArrayList<>();
         ArrayList<String> cardBody = new ArrayList<>();
         ArrayList<String> readMore = new ArrayList<>();
-
-        RecyclerView recentPostItemsRecyclerview = view.findViewById(R.id.recent_posts_recyclerview);
 
         cardTitle.add("Am having trouble integrating Heroku...");
         cardBody.add("Am having trouble integrating Heroku with Python Flask");
@@ -75,7 +75,7 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
             @Override
             public void onClick(View view) {
                 openDialog();
-                getResponses(recentPostItemsRecyclerview);
+                getResponses();
             }
         });
     }
@@ -92,7 +92,7 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
         Toast.makeText(getActivity(), "Toast Works: " + title + ", " + body, Toast.LENGTH_SHORT).show();
     }
 
-    public void getResponses(RecyclerView recyclerView){
+    public void getResponses(){
         GeneralQuestionsApi generalQuestionsApi = GeneralQuestionsClient.generalQuestions();
         Call<Questions> call = generalQuestionsApi.getGeneralQuestions();
 
@@ -104,6 +104,7 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
                     List<Result> results = response.body().getResults();
 
                     AltRecentPostsRecyclerAdapter recentPostsRecyclerAdapter = new AltRecentPostsRecyclerAdapter(getActivity(), results);
+                    RecyclerView recyclerView = rootView.findViewById(R.id.recent_posts_recyclerview);
                     recyclerView.setAdapter(recentPostsRecyclerAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                 } else {

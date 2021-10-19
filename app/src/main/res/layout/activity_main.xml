@@ -9,10 +9,13 @@
     tools:context=".ui.MainActivity"
     tools:openDrawer="start">
 
-    <include layout="@layout/toolbar"/>
+    <include
+        android:id="@+id/nav_menu"
+        layout="@layout/toolbar"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
+        android:layout_below="@+id/nav_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navigation"/>

@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,10 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
+import com.moringaschool.helpdesk.adapters.AltRecentPostsRecyclerAdapter;
+import com.moringaschool.helpdesk.models.Result;
 
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +54,25 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_widget, menu);
+        MenuItem item = menu.findItem(R.id.app_bar_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -63,8 +86,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 selectedFragment = new ProfileFragment();
                 break;
             case R.id.nav_posted_question:
-                selectedFragment = new PostedQuestionFragment();
-//                openDialog();
+//                selectedFragment = new PostedQuestionFragment();
+                openDialog();
                 break;
 //            case R.id.nav_faq:
 //                selectedFragment = new FaqFragment();
@@ -89,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         startActivity(intent);
         finish();
     }
+
 
     public void openDialog(){
         PostQuestionDialog postQuestionDialog = new PostQuestionDialog();
