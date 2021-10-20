@@ -57,7 +57,6 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
         FirebaseAuth.AuthStateListener mAuthListener;
         FirebaseUser currentUser;
 
-        TextView post = view.findViewById(R.id.post);
         ImageView help = view.findViewById(R.id.help);
         TextView username = view.findViewById(R.id.username);
 
