@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
@@ -32,6 +33,7 @@ import java.util.Objects;
 public class ProfileFragment extends Fragment implements PostQuestionDialog.PostQuestionDialogListener {
     private List<Result> resultsList;
     private AltRecentPostsRecyclerAdapter recentPostsRecyclerAdapter;
+
     QuestionsListViewModel questionsListViewModel;
 
     @Override
@@ -48,6 +50,8 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container_profile);
 
         FirebaseAuth mAuth;
         FirebaseAuth.AuthStateListener mAuthListener;
@@ -82,6 +86,9 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
                 RecyclerView recyclerView = view.findViewById(R.id.recent_posts_recyclerview);
                 recyclerView.setAdapter(recentPostsRecyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
             }
         });
 
