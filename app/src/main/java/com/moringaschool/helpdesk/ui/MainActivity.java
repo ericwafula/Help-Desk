@@ -4,39 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.constants.Constants;
-import com.moringaschool.helpdesk.models.Questions;
 import com.moringaschool.helpdesk.models.Result;
-import com.moringaschool.helpdesk.network.GeneralQuestionsApi;
-import com.moringaschool.helpdesk.network.GeneralQuestionsClient;
 import com.moringaschool.helpdesk.ui.fragments.HomeFragment;
 import com.moringaschool.helpdesk.ui.fragments.PostQuestionDialog;
 import com.moringaschool.helpdesk.ui.fragments.PostedQuestionFragment;
 import com.moringaschool.helpdesk.ui.fragments.ProfileFragment;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private final String TAG = MainActivity.class.getSimpleName();

@@ -13,8 +13,8 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GeneralQuestionsClient {
-    public static GeneralQuestionsApi generalQuestions(){
+public class QuestionsClient {
+    public static QuestionsApi generalQuestions(){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @NonNull
@@ -33,6 +33,6 @@ public class GeneralQuestionsClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(GeneralQuestionsApi.class);
+        return retrofit.create(QuestionsApi.class);
     }
 }
