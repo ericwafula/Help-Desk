@@ -20,6 +20,9 @@ import com.moringaschool.helpdesk.adapters.ResponsesRecyclerAdapter;
 import java.util.ArrayList;
 
 public class PostedQuestionFragment extends Fragment {
+    TextView postedTitle;
+    TextView postedBody;
+    Bundle bundle;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,15 @@ public class PostedQuestionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        postedTitle = (TextView) view.findViewById(R.id.p_title);
+        postedBody = (TextView) view.findViewById(R.id.p_body);
 
+        bundle = getArguments();
+        assert bundle != null;
+        String title = bundle.getString("pTitle");
+        String body = bundle.getString("pBody");
+
+        postedTitle.setText(title);
+        postedBody.setText(body);
     }
 }
