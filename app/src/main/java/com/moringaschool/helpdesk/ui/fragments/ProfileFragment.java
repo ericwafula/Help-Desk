@@ -12,18 +12,27 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
+import com.moringaschool.helpdesk.adapters.AltRecentPostsRecyclerAdapter;
 import com.moringaschool.helpdesk.adapters.RecentPostsRecyclerAdapter;
+import com.moringaschool.helpdesk.models.Result;
 import com.moringaschool.helpdesk.ui.LoginActivity;
+import com.moringaschool.helpdesk.viewmodel.QuestionsListViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileFragment extends Fragment implements PostQuestionDialog.PostQuestionDialogListener {
+    private List<Result> resultsList;
+    private AltRecentPostsRecyclerAdapter recentPostsRecyclerAdapter;
+    QuestionsListViewModel questionsListViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,9 +57,6 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
         ImageView logout = view.findViewById(R.id.ic_logout);
         TextView username = view.findViewById(R.id.username);
 
-        ArrayList<String> cardTitle = new ArrayList<>();
-        ArrayList<String> cardBody = new ArrayList<>();
-        ArrayList<String> readMore = new ArrayList<>();
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -58,22 +64,19 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
         assert currentUser != null;
         username.setText(currentUser.getDisplayName());
 
-        cardTitle.add("Am having trouble integrating Heroku...");
-        cardBody.add("Am having trouble integrating Heroku with Python Flask");
-        readMore.add("Read More...");
 
-        cardTitle.add("Am having trouble integrating Django...");
-        cardBody.add("Am having trouble integrating Heroku with Python Django");
-        readMore.add("Read More...");
-
-        cardTitle.add("Am having trouble integrating Android...");
-        cardBody.add("Am having trouble integrating Android with Firebase");
-        readMore.add("Read More...");
-
-        RecyclerView recentPostItemsRecyclerview = view.findViewById(R.id.recent_posts_recyclerview);
-        RecentPostsRecyclerAdapter recentPostsRecyclerAdapter = new RecentPostsRecyclerAdapter(getContext(), cardTitle, cardBody, readMore);
-        recentPostItemsRecyclerview.setAdapter(recentPostsRecyclerAdapter);
-        recentPostItemsRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        questionsListViewModel = new ViewModelProvider(this).get(QuestionsListViewModel.class);
+        questionsListViewModel.makeUserApiCall();
+        questionsListViewModel.getUserQuestionsListObserver().observe(getViewLifecycleOwner(), new Observer<List<Result>>() {
+            @Override
+            public void onChanged(List<Result> results) {
+                resultsList = results;
+                recentPostsRecyclerAdapter = new AltRecentPostsRecyclerAdapter(getActivity(), resultsList);
+                RecyclerView recyclerView = view.findViewById(R.id.recent_posts_recyclerview);
+                recyclerView.setAdapter(recentPostsRecyclerAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
+        });
 
 
 

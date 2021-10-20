@@ -51,25 +51,6 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
 
         ImageView post = view.findViewById(R.id.post);
 
-        Bundle bundle = getArguments();
-//        List<Result> results = bundle.getParcelableArrayList("results");
-
-        ArrayList<String> cardTitle = new ArrayList<>();
-        ArrayList<String> cardBody = new ArrayList<>();
-        ArrayList<String> readMore = new ArrayList<>();
-
-        cardTitle.add("Am having trouble integrating Heroku...");
-        cardBody.add("Am having trouble integrating Heroku with Python Flask");
-        readMore.add("Read More...");
-
-        cardTitle.add("Am having trouble integrating Django...");
-        cardBody.add("Am having trouble integrating Heroku with Python Django");
-        readMore.add("Read More...");
-
-        cardTitle.add("Am having trouble integrating Android...");
-        cardBody.add("Am having trouble integrating Android with Firebase");
-        readMore.add("Read More...");
-
 
         questionsListViewModel = new ViewModelProvider(this).get(QuestionsListViewModel.class);
         questionsListViewModel.makeApiCall();
