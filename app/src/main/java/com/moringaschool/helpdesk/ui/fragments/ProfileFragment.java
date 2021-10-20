@@ -1,6 +1,7 @@
 package com.moringaschool.helpdesk.ui.fragments;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +22,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.adapters.AltRecentPostsRecyclerAdapter;
-import com.moringaschool.helpdesk.adapters.RecentPostsRecyclerAdapter;
 import com.moringaschool.helpdesk.models.Result;
-import com.moringaschool.helpdesk.ui.LoginActivity;
+import com.moringaschool.helpdesk.ui.activities.LoginActivity;
 import com.moringaschool.helpdesk.viewmodel.QuestionsListViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ProfileFragment extends Fragment implements PostQuestionDialog.PostQuestionDialogListener {
     private List<Result> resultsList;
@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
         FirebaseUser currentUser;
 
         TextView post = view.findViewById(R.id.post);
-        ImageView logout = view.findViewById(R.id.ic_logout);
+        ImageView help = view.findViewById(R.id.help);
         TextView username = view.findViewById(R.id.username);
 
 
@@ -63,6 +63,13 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
 
         assert currentUser != null;
         username.setText(currentUser.getDisplayName());
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FaqFragment()).commit();
+            }
+        });
 
 
         questionsListViewModel = new ViewModelProvider(this).get(QuestionsListViewModel.class);
@@ -79,20 +86,8 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
         });
 
 
+        //
 
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog();
-            }
-        });
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logout();
-            }
-        });
     }
 
     public void openDialog(){
@@ -113,5 +108,6 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
         Intent intent = new Intent(getContext(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        getActivity().finish();
     }
 }

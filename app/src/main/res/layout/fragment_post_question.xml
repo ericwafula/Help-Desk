@@ -5,11 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_back_button"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="12dp">
+        android:layout_below="@+id/toolbar"
+        android:paddingTop="12dp"
+        android:paddingEnd="24dp">
 
 
         <ImageView

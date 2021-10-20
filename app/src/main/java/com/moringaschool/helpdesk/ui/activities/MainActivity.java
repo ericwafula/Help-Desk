@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,25 +9,41 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.constants.Constants;
+import com.moringaschool.helpdesk.models.PostQuestion;
+import com.moringaschool.helpdesk.models.QuestionObject;
 import com.moringaschool.helpdesk.models.Result;
+import com.moringaschool.helpdesk.network.PostQuestionApi;
+import com.moringaschool.helpdesk.network.PostQuestionClient;
 import com.moringaschool.helpdesk.ui.fragments.HomeFragment;
 import com.moringaschool.helpdesk.ui.fragments.PostQuestionDialog;
-import com.moringaschool.helpdesk.ui.fragments.PostedQuestionFragment;
+import com.moringaschool.helpdesk.ui.fragments.PostQuestionDialogSheet;
 import com.moringaschool.helpdesk.ui.fragments.ProfileFragment;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener, PostQuestionDialogSheet.BottomSheetListener {
     private final String TAG = MainActivity.class.getSimpleName();
+    private String mTitle;
+    private String mBody;
+    private String mCategory;
+    private String mLanguage;
 
     private SharedPreferences mSharedPreferences;
 
@@ -36,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     FirebaseUser currentUser;
     List<Result> results;
 
+    FloatingActionButton fab;
     BottomNavigationView bottomNav;
     Toolbar toolbar;
 
@@ -47,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Constants.authToken = mSharedPreferences.getString(Constants.AUTH_TOKEN_PREFERENCE, null);
 
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(this);
+
         bottomNav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
 
@@ -57,6 +77,40 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNav.setOnNavigationItemSelectedListener(this);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == fab){
+            PostQuestionDialogSheet postQuestionDialogSheet = new PostQuestionDialogSheet();
+            postQuestionDialogSheet.show(getSupportFragmentManager(), "Post Question Dialog Sheet");
+        }
+    }
+
+    @Override
+    public void onFloatingActionButtonSubmit(String category, String title, String body, String language) {
+
+        PostQuestionApi postQuestionClient = PostQuestionClient.postQuestion();
+        PostQuestion postQuestion = new PostQuestion(category, title, body, language);
+
+        Call<QuestionObject> call = postQuestionClient.postQuestion(postQuestion);
+        call.enqueue(new Callback<QuestionObject>() {
+            @Override
+            public void onResponse(@NonNull Call<QuestionObject> call, @NonNull Response<QuestionObject> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Question Posted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Unable to post question", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, category + ", " + language, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<QuestionObject> call, @NonNull Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
     }
 
     @Override
@@ -90,17 +144,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.nav_profile:
                 selectedFragment = new ProfileFragment();
                 break;
-            case R.id.nav_posted_question:
-                selectedFragment = new PostedQuestionFragment();
-                openDialog();
-                break;
-//            case R.id.nav_faq:
-//                selectedFragment = new FaqFragment();
-//                break;
-//            case R.id.nav_logout:
-//                Toast.makeText(MainActivity.this, "Logging you out", Toast.LENGTH_SHORT).show();
-//                selectedFragment = new HomeFragment();
-//                logout();
         }
 
         assert selectedFragment != null;
@@ -123,5 +166,4 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         PostQuestionDialog postQuestionDialog = new PostQuestionDialog();
         postQuestionDialog.show(getSupportFragmentManager(), "question dialog");
     }
-
 }

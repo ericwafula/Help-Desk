@@ -54,5 +54,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card_body"
             android:text="@string/read_more" />
+
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

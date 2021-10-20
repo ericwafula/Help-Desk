@@ -27,15 +27,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/post"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:src="@drawable/ic_post"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -54,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:height="35dp"
-                android:text="@string/flask" />
+                android:text="@string/technical" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/django"
@@ -63,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:height="35dp"
-                android:text="@string/django" />
+                android:text="@string/logical" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/spark"
@@ -72,61 +63,39 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:height="35dp"
-                android:text="@string/spark" />
+                android:text="@string/other" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/java"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:height="35dp"
-                android:text="@string/java" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/python"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:height="35dp"
-                android:text="@string/python" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/javascript"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:height="35dp"
-                android:text="@string/javascript" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/html"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:height="35dp"
-                android:text="@string/html" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/css"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:height="35dp"
-                android:text="@string/css" />
 
 
         </com.google.android.material.chip.ChipGroup>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/chip_group"
+            android:id="@+id/shimmer_view_container"
+            app:shimmer_duration="1000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_layout"/>
+                <include layout="@layout/shimmer_layout"/>
+                <include layout="@layout/shimmer_layout"/>
+                <include layout="@layout/shimmer_layout"/>
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recent_posts_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/chip_group"
+            android:layout_below="@+id/shimmer_view_container"
             android:layout_marginTop="24dp" />
     </RelativeLayout>
 

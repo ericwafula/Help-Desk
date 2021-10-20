@@ -52,10 +52,34 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="read_more_java">Read More...</string>
     <string name="search">Search</string>
+    <string name="call">Call</string>
+    <string name="is_your_app_for_sale">Is your app for sale?</string>
+    <string name="our_app_is_free_to_use">Our app is free to use</string>
+    <string name="how_do_i_post_a_question">How do I post a question</string>
+    <string name="just_click_the_floating_add_button">Just click the floating add button</string>
+    <string name="how_do_i_contact_moringaschool">How do I contact MoringaSchool?</string>
+    <string name="we_have_their_contacts_above">We have their contacts above</string>
+    <string name="technical">Technical</string>
+    <string name="logical">Logical</string>
+    <string name="other">Other</string>
+
+    <string-array name="category">
+        <item>Technical</item>
+        <item>Logical</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="language">
+        <item>Java</item>
+        <item>Python</item>
+        <item>Javascript</item>
+        <item>HTML</item>
+        <item>CSS</item>
+        <item>XML</item>
+    </string-array>
 </resources>
