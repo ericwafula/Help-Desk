@@ -1,4 +1,4 @@
-package com.moringaschool.helpdesk.ui;
+package com.moringaschool.helpdesk.ui.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

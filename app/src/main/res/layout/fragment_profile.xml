@@ -5,51 +5,18 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/profile_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
-
-        <TextView
-            android:id="@+id/profile_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:text="@string/profile"
-            android:textColor="@color/primaryVariant"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="24dp"
-            android:layout_toEndOf="@id/profile_title"
-            android:drawablePadding="6dp"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="24sp"
-            app:drawableEndCompat="@drawable/help_circle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_header"
-        android:layout_marginTop="36dp">
+        android:layout_marginTop="12dp">
 
         <TextView
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="24dp"
             android:text="@string/eric_wathome"
             android:textColor="#B0ABBD"
             android:textSize="24sp"
@@ -57,14 +24,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ic_logout"
+            android:id="@+id/help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="27dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_log_out" />
+            app:srcCompat="@drawable/help_circle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,10 +48,32 @@
         android:textSize="24sp"
         android:textColor="@color/colorOnPrimary"/>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/my_posts_title"
+        android:id="@+id/shimmer_view_container_profile"
+        app:shimmer_duration="1000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_layout"/>
+            <include layout="@layout/shimmer_layout"/>
+            <include layout="@layout/shimmer_layout"/>
+            <include layout="@layout/shimmer_layout"/>
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recent_posts_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/my_posts_title"
+        android:layout_below="@+id/shimmer_view_container_profile"
         android:layout_marginTop="24dp" />
 </RelativeLayout>

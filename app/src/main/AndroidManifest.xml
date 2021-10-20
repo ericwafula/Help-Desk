@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HelpDesk">
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.SignupActivity"
+            android:name=".ui.activities.SignupActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.LauncherActivity"
+            android:name=".ui.activities.LauncherActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true" />
     </application>
 

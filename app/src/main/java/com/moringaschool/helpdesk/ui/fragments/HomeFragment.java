@@ -1,6 +1,7 @@
 package com.moringaschool.helpdesk.ui.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.adapters.AltRecentPostsRecyclerAdapter;
 import com.moringaschool.helpdesk.models.Questions;
@@ -47,9 +49,7 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
         super.onViewCreated(view, savedInstanceState);
         final String tag = getTag();
 
-
-
-        ImageView post = view.findViewById(R.id.post);
+        ShimmerFrameLayout shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
 
 
         questionsListViewModel = new ViewModelProvider(this).get(QuestionsListViewModel.class);
@@ -62,14 +62,10 @@ public class HomeFragment extends Fragment implements PostQuestionDialog.PostQue
                 RecyclerView recyclerView = rootView.findViewById(R.id.recent_posts_recyclerview);
                 recyclerView.setAdapter(recentPostsRecyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            }
-        });
 
+                shimmerFrameLayout.stopShimmer();
+                shimmerFrameLayout.setVisibility(View.GONE);
 
-        post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog();
             }
         });
     }

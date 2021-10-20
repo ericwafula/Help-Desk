@@ -1,25 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.MainActivity"
+    tools:context=".ui.activities.MainActivity"
     tools:openDrawer="start">
 
-    <include
-        android:id="@+id/nav_menu"
-        layout="@layout/toolbar"/>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_below="@+id/nav_menu"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navigation"/>
+        android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/nav_menu"
+            layout="@layout/toolbar"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_below="@+id/nav_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="24dp"
+        android:elevation="4dp"
+        android:backgroundTint="@color/primaryVariant"
+        app:tint="@color/white"
+        android:src="@drawable/ic_post"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -28,8 +45,8 @@
         android:layout_alignParentBottom="true"
         app:itemIconTint="@color/colorOnPrimary"
         app:itemTextColor="@color/colorOnPrimary"
+        android:layout_gravity="bottom"
         android:background="#EEF8FD"
         app:menu="@menu/main_menu" />
 
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

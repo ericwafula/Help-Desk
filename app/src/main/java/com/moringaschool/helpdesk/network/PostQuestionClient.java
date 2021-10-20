@@ -3,6 +3,7 @@ package com.moringaschool.helpdesk.network;
 import androidx.annotation.NonNull;
 
 import com.moringaschool.helpdesk.constants.Constants;
+import com.moringaschool.helpdesk.models.PostQuestion;
 
 import java.io.IOException;
 
@@ -13,8 +14,8 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class QuestionsClient {
-    public static QuestionsApi generalQuestions(){
+public class PostQuestionClient {
+    public static PostQuestionApi postQuestion(){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @NonNull
@@ -33,6 +34,6 @@ public class QuestionsClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        return retrofit.create(QuestionsApi.class);
+        return retrofit.create(PostQuestionApi.class);
     }
 }
