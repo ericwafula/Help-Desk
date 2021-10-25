@@ -18,11 +18,16 @@ import com.moringaschool.helpdesk.R;
 import com.moringaschool.helpdesk.adapters.ResponsesRecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostedQuestionFragment extends Fragment {
     TextView postedTitle;
     TextView postedBody;
     Bundle bundle;
+
+    ArrayList<String> mResponses =  new ArrayList<>();
+    ArrayList<String> mUpVotes =  new ArrayList<>();
+    ArrayList<String> mDownVotes = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,5 +54,29 @@ public class PostedQuestionFragment extends Fragment {
 
         postedTitle.setText(title);
         postedBody.setText(body);
+        addResponses();
+
+        ResponsesRecyclerAdapter adapter = new ResponsesRecyclerAdapter(getActivity(), mResponses, mUpVotes, mDownVotes);
+        RecyclerView postedQuestionRecyclerview = (RecyclerView) view.findViewById(R.id.posted_question_recyclerview);
+        postedQuestionRecyclerview.setAdapter(adapter);
+        postedQuestionRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void addResponses(){
+        mResponses.add("Make sure you have the right dependencies");
+        mUpVotes.add("9");
+        mDownVotes.add("3");
+
+        mResponses.add("You are using and old version of python");
+        mUpVotes.add("1");
+        mDownVotes.add("2");
+
+        mResponses.add("You haven't imported the right dependencies");
+        mUpVotes.add("4");
+        mDownVotes.add("0");
+
+        mResponses.add("Make sure you have the right dependencies");
+        mUpVotes.add("9");
+        mDownVotes.add("3");
     }
 }

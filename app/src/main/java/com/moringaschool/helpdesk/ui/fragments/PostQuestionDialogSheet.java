@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ public class PostQuestionDialogSheet extends BottomSheetDialogFragment {
     String body;
     String category;
     String language;
+    String screenshot;
 
     @Nullable
     @Override
@@ -33,9 +35,12 @@ public class PostQuestionDialogSheet extends BottomSheetDialogFragment {
         Spinner questionCategory = view.findViewById(R.id.spinner);
         Spinner languageCategory = view.findViewById(R.id.language);
         Button submit = view.findViewById(R.id.post_question_button);
+        TextView dismiss = view.findViewById(R.id.dismiss);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.category, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> languageAdapter = ArrayAdapter.createFromResource(getContext(), R.array.language, android.R.layout.simple_spinner_item);
+        screenshot = "screenshot";
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         questionCategory.setAdapter(adapter);
@@ -50,6 +55,13 @@ public class PostQuestionDialogSheet extends BottomSheetDialogFragment {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
             }
         });
 
@@ -70,14 +82,15 @@ public class PostQuestionDialogSheet extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 title = questionTitle.getText().toString();
                 body = questionBody.getText().toString();
-                mListener.onFloatingActionButtonSubmit(title, body, category, language);
+                mListener.onFloatingActionButtonSubmit(category, title, body, language, screenshot);
+                dismiss();
             }
         });
         return view;
     }
 
     public interface BottomSheetListener{
-        void onFloatingActionButtonSubmit(String title, String body, String category, String language);
+        void onFloatingActionButtonSubmit(String category, String title, String body, String language, String screenshot);
     }
 
     @Override

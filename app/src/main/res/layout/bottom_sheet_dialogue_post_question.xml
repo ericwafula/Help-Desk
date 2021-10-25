@@ -21,9 +21,9 @@
     <RelativeLayout
         android:id="@+id/input_container"
         android:layout_width="0dp"
-        android:layout_marginTop="24dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/input_radius"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,10 +47,10 @@
             android:layout_below="@+id/title"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:minHeight="48dp"
             android:background="@drawable/question_input_radius"
             android:hint="@string/enter_question_s_title"
             android:inputType="text"
+            android:minHeight="48dp"
             android:paddingLeft="12dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
@@ -65,40 +65,41 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
-            android:minHeight="48dp"
             android:background="@drawable/question_input_radius"
-            android:hint="@string/post_a_question"
+            android:hint="@string/enter_question"
             android:inputType="text"
-            android:paddingLeft="12dp"
+            android:minHeight="48dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
             android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/question_body_input"
-            android:layout_marginBottom="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/question_input_radius"
             android:minHeight="48dp"
             android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:paddingBottom="6dp" />
 
         <Spinner
             android:id="@+id/language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:layout_below="@+id/spinner"
             android:layout_marginBottom="24dp"
+            android:background="@drawable/question_input_radius"
             android:minHeight="48dp"
             android:paddingTop="6dp"
-            android:paddingBottom="6dp"
-            android:background="@drawable/question_input_radius"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:paddingBottom="6dp" />
 
     </RelativeLayout>
 
@@ -108,7 +109,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/button_radius"
         android:minHeight="48dp"
         android:text="@string/submit"
@@ -117,6 +117,19 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_container" />
+
+    <TextView
+        android:id="@+id/dismiss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:text="@string/dismiss"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryVariant"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post_question_button"
+        app:layout_constraintEnd_toStartOf="@+id/post_question_button" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

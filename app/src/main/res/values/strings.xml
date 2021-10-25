@@ -67,6 +67,8 @@
     <string name="technical">Technical</string>
     <string name="logical">Logical</string>
     <string name="other">Other</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="enter_question">Enter Question</string>
 
     <string-array name="category">
         <item>Technical</item>

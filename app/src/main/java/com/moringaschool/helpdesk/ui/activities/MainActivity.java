@@ -34,6 +34,7 @@ import com.moringaschool.helpdesk.ui.fragments.ProfileFragment;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,10 +65,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Constants.authToken = mSharedPreferences.getString(Constants.AUTH_TOKEN_PREFERENCE, null);
 
+        Log.d(TAG, "token: " + Constants.authToken);
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
         bottomNav = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
 
 
         // ini
@@ -88,20 +94,22 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     @Override
-    public void onFloatingActionButtonSubmit(String category, String title, String body, String language) {
+    public void onFloatingActionButtonSubmit(String category, String title, String body, String language, String screenshot) {
 
         PostQuestionApi postQuestionClient = PostQuestionClient.postQuestion();
-        PostQuestion postQuestion = new PostQuestion(category, title, body, language);
+        PostQuestion postQuestion = new PostQuestion(category, title, body, language, screenshot);
 
         Call<QuestionObject> call = postQuestionClient.postQuestion(postQuestion);
         call.enqueue(new Callback<QuestionObject>() {
             @Override
             public void onResponse(@NonNull Call<QuestionObject> call, @NonNull Response<QuestionObject> response) {
+                Log.e(TAG, "onResponse: " + response.body());
                 if (response.isSuccessful()) {
                     Toast.makeText(MainActivity.this, "Question Posted", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onResponse: " + response.body());
                 } else {
                     Toast.makeText(MainActivity.this, "Unable to post question", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(MainActivity.this, category + ", " + language, Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "onResponse: " + response.body());
                 }
             }
 
@@ -113,25 +121,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_widget, menu);
-        MenuItem item = menu.findItem(R.id.app_bar_search);
-        SearchView searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
