@@ -7,15 +7,15 @@ Over time within Moringa, most students will notice that they are usually facing
 The same situation presents itself when within programming environments.
 
 This app helps tackle these challenges by providing a simple solutions for students to get their most pressing questions answered through the pool of other students and/or Technical Mentors/Support
-![Splashscreen](HelpDesk/app/src/main/res/drawable/splashscreen.png)
-![Signup](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/signup.png)
-![Login](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/login.png)
-![Home](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/img_home.png)
-![Home Filter](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/home_filter.png)
-![Home Search](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/home_search.png)
-![Question](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/question.png)
-![Profile](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/img_profile.png)
-![Help](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/img_help.png)
+![Splashscreen](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/splashscreen.png)
+![Signup](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/signup.png)
+![Login](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/login.png)
+![Home](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/img_home.png)
+![Home Filter](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/home_filter.png)
+![Home Search](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/home_search.png)
+![Question](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/question.png)
+![Profile](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/img_profile.png)
+![Help](https://raw.githubusercontent.com/ericwafula/Help-Desk/ft-search-filter/app/src/main/res/drawable/img_help.png)
 
 
 ## Setup/Installation Requirements
