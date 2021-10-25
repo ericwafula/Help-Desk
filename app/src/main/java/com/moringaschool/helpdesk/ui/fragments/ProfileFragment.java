@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +28,7 @@ import com.moringaschool.helpdesk.models.Result;
 import com.moringaschool.helpdesk.ui.activities.LoginActivity;
 import com.moringaschool.helpdesk.viewmodel.QuestionsListViewModel;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -59,7 +61,8 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
 
         ImageView help = view.findViewById(R.id.help);
         TextView username = view.findViewById(R.id.username);
-
+        TextView noPostsFound = view.findViewById(R.id.no_posts_found);
+        LottieAnimationView emptyAnimation = view.findViewById(R.id.empty_animation);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -81,6 +84,11 @@ public class ProfileFragment extends Fragment implements PostQuestionDialog.Post
             @Override
             public void onChanged(List<Result> results) {
                 resultsList = results;
+                Collections.reverse(resultsList);
+                if (resultsList.size() == 0){
+                    noPostsFound.setText("No posts found");
+                    emptyAnimation.setVisibility(View.VISIBLE);
+                }
                 recentPostsRecyclerAdapter = new AltRecentPostsRecyclerAdapter(getActivity(), resultsList);
                 RecyclerView recyclerView = view.findViewById(R.id.recent_posts_recyclerview);
                 recyclerView.setAdapter(recentPostsRecyclerAdapter);

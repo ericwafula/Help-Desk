@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void showProgressBar() {
         mSignInProgressBar.setVisibility(View.VISIBLE);
         mLoadingSignUp.setVisibility(View.VISIBLE);
-        mLoadingSignUp.setText("Log in you in");
+        mLoadingSignUp.setText("Loging you in");
     }
 
     private void hideProgressBar() {
@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     assert response.body() != null;
                     Constants.authToken = response.body().getTokens().getAccess();
                     addToSharedPreferences(Constants.authToken);
-                    Toast.makeText(LoginActivity.this, "Backend Auth successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Backend Auth Failed", Toast.LENGTH_SHORT).show();

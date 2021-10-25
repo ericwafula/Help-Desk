@@ -21,8 +21,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.moringaschool.helpdesk.R;
+import com.moringaschool.helpdesk.models.Signup;
+import com.moringaschool.helpdesk.network.LoginApi;
+import com.moringaschool.helpdesk.network.LoginClient;
 
 import java.util.Objects;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = SignupActivity.class.getSimpleName();
@@ -117,6 +125,27 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         });
+
+        LoginApi signupClient = LoginClient.LoginUser();
+        Signup signup =  new Signup(email, name, password);
+
+        Call<ResponseBody> call = signupClient.signupUser(signup);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SignupActivity.this, "Didn't get a server response", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(SignupActivity.this, "Error while creating account", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void createFirebaseUserProfile(final FirebaseUser user) {
@@ -153,6 +182,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 }
             }
         };
+    }
+
+    public void createUserAccount(){
+
     }
 
     @Override

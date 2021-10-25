@@ -23,13 +23,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.zip.Inflater;
 
-public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecentPostsRecyclerAdapter.ViewHolder> {
+public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecentPostsRecyclerAdapter.ViewHolder> implements Filterable {
     private Context mContext;
     private List<Result> mResults;
+    private List<Result> mResultsAll;
 
     public AltRecentPostsRecyclerAdapter(Context mContext, List<Result> mResults) {
         this.mContext = mContext;
         this.mResults = mResults;
+        this.mResultsAll = new ArrayList<>(mResults);
     }
 
     public void setmResults(List<Result> mResults) {
@@ -70,17 +72,53 @@ public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecen
         return 0;
     }
 
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+        // runs on background thread
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Result> filteredList = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()){
+                filteredList.addAll(mResultsAll);
+            } else {
+                for (Result result : mResultsAll){
+                    if (result.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase()) || result.getBody().toLowerCase().contains(charSequence.toString().toLowerCase()) || result.getCategory().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                        filteredList.add(result);
+                    }
+                }
+            }
+
+            FilterResults filterResults = new FilterResults();
+            filterResults.values = filteredList;
+
+            return filterResults;
+        }
+
+        //runs on UI thread
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            mResults.clear();
+            mResults.addAll((Collection<? extends Result>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView cardTitle;
         TextView cardBody;
-        TextView cardReadMore;
+        TextView cardCategory;
         RelativeLayout relativeLayout;
         private Context mContext;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             cardTitle = itemView.findViewById(R.id.card_title);
             cardBody = itemView.findViewById(R.id.card_body);
-            cardReadMore = itemView.findViewById(R.id.card_read_more);
+            cardCategory = itemView.findViewById(R.id.card_read_more);
             relativeLayout = itemView.findViewById(R.id.relativeLayout);
             mContext = itemView.getContext();
         }
@@ -88,7 +126,7 @@ public class AltRecentPostsRecyclerAdapter extends RecyclerView.Adapter<AltRecen
         public void bindResults(Result result){
             cardTitle.setText(result.getTitle());
             cardBody.setText(result.getBody());
-            cardReadMore.setText(R.string.read_more_java);
+            cardCategory.setText(result.getCategory());
         }
     }
 }

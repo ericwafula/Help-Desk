@@ -11,7 +11,8 @@
         android:elevation="4dp"
         android:id="@+id/toolbar"
         android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        app:menu="@menu/search_widget"/>
+        app:title="Help Desk"
+        app:titleTextColor="#5063597D"
+        android:paddingEnd="12dp" />
 
 </RelativeLayout>

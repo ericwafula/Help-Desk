@@ -16,11 +16,12 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="15dp"
             android:text="@string/eric_wathome"
             android:textColor="#B0ABBD"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -32,6 +33,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/help_circle" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="51sp"
+            android:layout_height="51sp"
+            android:layout_marginStart="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -47,6 +57,27 @@
         android:text="@string/my_posts"
         android:textSize="24sp"
         android:textColor="@color/colorOnPrimary"/>
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"
+        android:id="@+id/no_posts_found"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_posts_title"
+        android:layout_centerHorizontal="true"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/empty_animation"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/no_posts_found"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/empty"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:layout_width="wrap_content"
