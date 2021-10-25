@@ -7,7 +7,7 @@ Over time within Moringa, most students will notice that they are usually facing
 The same situation presents itself when within programming environments.
 
 This app helps tackle these challenges by providing a simple solutions for students to get their most pressing questions answered through the pool of other students and/or Technical Mentors/Support
-![Splashscreen](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/splashscreen.png)
+![Splashscreen](HelpDesk/app/src/main/res/drawable/splashscreen.png)
 ![Signup](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/signup.png)
 ![Login](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/login.png)
 ![Home](/home/eric/AndroidStudioProjects/HelpDesk/app/src/main/res/drawable/img_home.png)
